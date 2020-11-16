@@ -8,7 +8,7 @@ long calculateBuffSize(long fileSize){
     return res+1;
 }
 
-void hexdump(FILE *input, FILE *output) {
+void hexdump(FILE *input, FILE *output) { 
     //TODO: read String from file
     fseek(input, 0, SEEK_END);
     long fileSize = ftell(input);
@@ -17,6 +17,9 @@ void hexdump(FILE *input, FILE *output) {
     rewind(input);
 
     char arr [buffSize];
+    for(int i=0; i < buffSize; i++)
+	arr[i] = 0;
+
     fread(arr, 1, fileSize, input);
     fclose(input);
     arr[buffSize-1] = 0; //terminate with 0 byte
@@ -36,7 +39,7 @@ void hexdump(FILE *input, FILE *output) {
 	    }
 	}
 	printf("  ");
-	for(int k = i; k < i+16; k++){
+	for(int k = i; k < i+16; k++){ //TODO: Nicht darstellbare chars durch . ersetzen
 	    if(arr[k] != 0){
 		fprintf(output, "%c", arr[k]);
 	    }
