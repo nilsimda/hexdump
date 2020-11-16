@@ -18,6 +18,7 @@ void hexdump(FILE *input, FILE *output) {
 
     char arr [buffSize];
     fread(arr, 1, fileSize, input);
+    fclose(input);
     arr[buffSize-1] = 0; //terminate with 0 byte
 
     int size = sizeof(arr)/(sizeof(arr[0])) -1;
@@ -34,7 +35,7 @@ void hexdump(FILE *input, FILE *output) {
 		fprintf(output, "%02x ", arr[i+j]);	
 	    }
 	}
-	printf("   ");
+	printf("  ");
 	for(int k = i; k < i+16; k++){
 	    if(arr[k] != 0){
 		fprintf(output, "%c", arr[k]);
