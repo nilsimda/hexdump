@@ -1,30 +1,48 @@
 #include <stdio.h>
 
-void hexdump(FILE *input, FILE *output) {
-    //TODO: read String from file, print result to output file instead (use fprint maybe)
+long calculateBuffSize(long fileSize){      
+    long res = 0;
+    while(res <=  fileSize){
+        res += 16 * sizeof(char);
+    }
+    return res+1;
+}
 
-    char arr [48] = "The quick brown fox jumps over the lazy dog";
+void hexdump(FILE *input, FILE *output) {
+    //TODO: read String from file
+    fseek(input, 0, SEEK_END);
+    long fileSize = ftell(input);
+    long buffSize = calculateBuffSize(fileSize);
+    
+    rewind(input);
+
+    char arr [buffSize];
+    fread(arr, 1, fileSize, input);
+    arr[buffSize-1] = 0; //terminate with 0 byte
+
     int size = sizeof(arr)/(sizeof(arr[0])) -1;
 
     for(int i = 0; i < size; i+=16){
 
-	printf("%06x : ", i);
+	fprintf(output, "%06x : ", i);
 
 	for(int j = 0; j < 16; j++){
-	    if(arr[i+j] == NULL){
-		printf("   ");
+	    if(arr[i+j] == 0){
+		fprintf(output, "   ");
 	    }
 	    else{
-		printf("%02x ", arr[i+j]);	
+		fprintf(output, "%02x ", arr[i+j]);	
 	    }
 	}
 	printf("   ");
 	for(int k = i; k < i+16; k++){
-	    if(arr[k] != NULL){
-		printf("%c", arr[k]);
+	    if(arr[k] != 0){
+		fprintf(output, "%c", arr[k]);
 	    }
 	}
-	printf("\n");  
+	fprintf(output, "\n");  
     }
     return;
 }
+
+
