@@ -33,8 +33,7 @@ void hexdump(FILE *input, FILE *output) {
 		        fprintf(output, "   ");
 	        }   
 	        else{
-		        fprintf(output, "%02x ", arr[i+j]);	
-	        }
+		        fprintf(output, "%02x ", (unsigned char) arr[i+j]);
 	    }
 	    printf("  ");
 
