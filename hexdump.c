@@ -39,12 +39,11 @@ void hexdump(FILE *input, FILE *output) {
 	    printf("  ");
 
 	    for(int k = i; k < i+16; k++){ 
-            //TODO: Nicht darstellbare chars durch . ersetzen
-	        if(arr[k] < 32 || arr[k] > 126)
-                printf(".");
-            else{    
-                if(arr[k] != 0){
-		            fprintf(output, "%c", arr[k]);
+            if(arr[k] != 0){
+                if(arr[k] < 32 || arr[k] > 126)
+                    printf(".");
+                else{    
+                    fprintf(output, "%c", arr[k]);
 	            }
             }    
 	    }
