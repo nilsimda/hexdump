@@ -36,12 +36,12 @@ void hexdump(FILE *input, FILE *output) {
 		        fprintf(output, "%02x ", (unsigned char) arr[i+j]);
             }    
 	    }
-	    printf("  ");
+	    fprintf(output, "  ");
 
 	    for(int k = i; k < i+16; k++){ 
             if(arr[k] != 0){
                 if(arr[k] < 32 || arr[k] > 126)
-                    printf(".");
+                    fprintf(output, ".");
                 else{    
                     fprintf(output, "%c", arr[k]);
 	            }
