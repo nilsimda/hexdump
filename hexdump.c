@@ -10,12 +10,16 @@ long calculateBuffSize(long fileSize){
 }
 
 void hexdump(FILE *input, FILE *output) { 
+
     fseek(input, 0, SEEK_END);
     long fileSize = ftell(input);
+    //printf("%ld\n", fileSize);
+
     long buffSize = calculateBuffSize(fileSize);
-    
+    //printf("%ld\n", buffSize);
+
     rewind(input);
-    char *arr = (char *) malloc(buffSize * sizeof (char));
+    char *arr = (char *) malloc(buffSize);
 
     for(int i=0; i < buffSize; i++) //fill buffer with 0s
 	    arr[i] = 0;
@@ -23,9 +27,7 @@ void hexdump(FILE *input, FILE *output) {
     fread(arr, 1, fileSize, input); //read text from file into buffer
     fclose(input);
 
-    int size = sizeof(arr)/(sizeof(arr[0]));
-
-    for(int i = 0; i < size; i+=16){
+    for(int i = 0; i < buffSize; i+=16){
 
 	    fprintf(output, "%06x : ", i);
 
