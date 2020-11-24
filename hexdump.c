@@ -14,7 +14,7 @@ void hexdump(FILE *input, FILE *output) {
     long buffSize = calculateBuffSize(fileSize);
     
     rewind(input);
-    char arr [buffSize];
+    char *arr = (char *) malloc(buffSize * sizeof (char));
 
     for(int i=0; i < buffSize; i++) //fill buffer with 0s
 	    arr[i] = 0;
