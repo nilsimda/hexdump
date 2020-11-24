@@ -50,6 +50,7 @@ void hexdump(FILE *input, FILE *output) {
 	    fprintf(output, "\n");  
     }
     fclose(output);
+    free(arr);
     return;
 }
 
