@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 long calculateBuffSize(long fileSize){      
     long res = 0;
