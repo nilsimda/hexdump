@@ -13,10 +13,8 @@ void hexdump(FILE *input, FILE *output) {
 
     fseek(input, 0, SEEK_END);
     long fileSize = ftell(input);
-    //printf("%ld\n", fileSize);
 
     long buffSize = calculateBuffSize(fileSize);
-    //printf("%ld\n", buffSize);
 
     rewind(input);
     char *arr = (char *) malloc(buffSize);
@@ -52,7 +50,6 @@ void hexdump(FILE *input, FILE *output) {
 	    }
 	    fprintf(output, "\n");  
     }
-    fclose(output);
     free(arr);
     return;
 }
