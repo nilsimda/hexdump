@@ -42,7 +42,7 @@ void hexdump(FILE *input, FILE *output) {
 	    fprintf(output, "  ");
 
 	    for(int k = i; k < i+16; k++){ 
-            if(arr[k] != 0){
+            if(k < fileSize){
                 if(arr[k] < 32 || arr[k] > 126)
                     fprintf(output, ".");
                 else{    
