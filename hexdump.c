@@ -32,7 +32,7 @@ void hexdump(FILE *input, FILE *output) {
 	    fprintf(output, "%06x : ", i);
 
 	    for(int j = 0; j < 16; j++){
-	        if(arr[i+j] == 0){
+	        if(i+j > fileSize){
 		        fprintf(output, "   ");
 	        }   
 	        else{
